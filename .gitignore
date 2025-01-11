@@ -1,0 +1,4 @@
+.venv
+SIE-files/*
+output-files/*
+.DS_store

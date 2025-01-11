@@ -116,7 +116,15 @@ def main():
             cols.append("%0.0f" % float(ver["amount"]))
             cols.append("%s" % ver["vertext"])
             cols.append("%s" % ver["verno"])
-            cols.append("%s" % datetime.datetime.strptime(cols[0], "%Y-%m-%d").strftime("%s"))
+
+            # cols.append("%s" % datetime.datetime.strptime(cols[0], "%Y-%m-%d").strftime("%s"))
+            # Check if cols[0] is a valid date before parsing
+            try:
+                date_key = datetime.datetime.strptime(cols[0], "%Y-%m-%d").strftime("%s")
+            except ValueError:
+                date_key = ""
+            cols.append(date_key)
+
             cols.append("%s" % attribute_fnamn)
             if args.debug:
                 print('"' + '","'.join(cols) + '"')
